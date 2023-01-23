@@ -3,10 +3,6 @@ package Supernaturals.Strikeable.Monster;
 import Supernaturals.Supernatural;
 
 public abstract class Monster extends Supernatural {
-    public String name;
-    public int attackPower;
-    public int health;
-    public boolean isDead;
     public Monster(String name, int attackPower, int health) {
         this.name = name;
         this.attackPower = attackPower;
@@ -15,22 +11,9 @@ public abstract class Monster extends Supernatural {
     }
     public Monster() {
         super();
-
     }
 
 
-    public String getName() {
-        return name;
-    }
-    public int getAttackPower() {
-        return attackPower;
-    }
-    public int getHealth() {
-        return health;
-    }
-    public void setHealth(int health){
-        this.health = health;
-    }
     public abstract void monsterAttack(Monster monster);
     public abstract void obstacleAttack (Supernatural obstacle);
 

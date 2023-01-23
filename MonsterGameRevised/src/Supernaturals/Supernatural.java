@@ -21,6 +21,10 @@ public Supernatural (){
         return health;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public boolean isDead() {
         return isDead;
     }
