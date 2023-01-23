@@ -65,13 +65,10 @@ public class Game {
     }
 
     public void actualGame() {
-
-
         while (attacker.getMonstersAlive() != 0 && defender.getMonstersAlive() != 0) {
             //chance to generate obstacle
             if (generateObstacle() == true) {
                 System.out.println("TIME FOR THE BOSS BATTLE");
-
                 switch (Utilities.generateGuessingNumber(1, 2)) {
                     case 1 -> new Witch();
                     case 2 -> new Fairy();
