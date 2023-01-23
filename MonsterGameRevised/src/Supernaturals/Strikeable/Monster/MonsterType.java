@@ -32,5 +32,7 @@ public enum MonsterType {
     public boolean isDead() {
         return isDead;
     }
+
+
 }
 
