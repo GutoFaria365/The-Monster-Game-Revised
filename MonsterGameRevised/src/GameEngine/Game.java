@@ -65,6 +65,8 @@ public class Game {
 
     public void actualGame() {
         while (firstPlayer.getMonstersAlive() != 0 && secondPlayer.getMonstersAlive() != 0) {
+            //chance to generate obstacle
+
             System.out.println("-------------------ROUND " + this.roundCount + "-----------------");
 
             System.out.println(firstPlayer.getPlayerName() + "'s turn!");

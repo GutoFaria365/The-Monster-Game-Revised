@@ -8,7 +8,7 @@ public class Vampire extends Monster {
 
     }
     public Vampire () {
-        this.name = "Supernaturals.Strikeable.Monster.Vampire";
+        this.name = "Vampire";
         this.attackPower = 20;
         this.health = 100;
         this.isDead = false;

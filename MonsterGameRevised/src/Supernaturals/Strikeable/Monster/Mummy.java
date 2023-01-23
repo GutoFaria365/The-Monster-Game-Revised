@@ -4,14 +4,14 @@ import Supernaturals.Supernatural;
 
 public class Mummy extends Monster {
    public  int countAttacks = 0;
-   public  int consecutiveAttack = 0;
+   public  int previousRound = 0;
 
     public Mummy(String name, int attackPower, int health) {
         super(name, attackPower, health);
 
     }
     public Mummy() {
-        this.name = "Supernaturals.Strikeable.Monster.Mummy";
+        this.name = "Mummy";
         this.attackPower = 30;
         this.health = 80;
         this.isDead = false;
@@ -26,14 +26,14 @@ public class Mummy extends Monster {
     }
     @Override
     public void monsterAttack(Monster monster) {
-        if (this.consecutiveAttack == 0) {
-            this.consecutiveAttack = Game.roundCount;
+        if (this.previousRound == 0) {
+            this.previousRound = Game.roundCount;
             this.countAttacks += 1;
-            System.out.println(this.countAttacks + "a" + "round1a" + this.consecutiveAttack + Game.roundCount);
-        } else if (Game.roundCount - consecutiveAttack == 1) {
-            this.consecutiveAttack = Game.roundCount;
+            System.out.println(this.countAttacks + "a" + "round1a" + this.previousRound + Game.roundCount);
+        } else if (Game.roundCount - previousRound == 1) {
+            this.previousRound = Game.roundCount;
             this.countAttacks += 1;
-            System.out.println(this.countAttacks + "a" + "round2a" + this.consecutiveAttack + Game.roundCount);
+            System.out.println(this.countAttacks + "a" + "round2a" + this.previousRound + Game.roundCount);
         } else {
             System.out.println(this.countAttacks + "a" + "round4a" + Game.roundCount);
             this.countAttacks = 0;

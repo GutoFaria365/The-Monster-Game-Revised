@@ -8,10 +8,11 @@ public class Werewolf extends Monster {
         //no special
     }
     public Werewolf() {
-        this.name = "Supernaturals.Strikeable.Monster.Werewolf";
+        this.name = "Werewolf";
         this.attackPower = 20;
         this.health = 120;
         this.isDead = false;
+
     }
 
     public Werewolf(MonsterType monsterType){
