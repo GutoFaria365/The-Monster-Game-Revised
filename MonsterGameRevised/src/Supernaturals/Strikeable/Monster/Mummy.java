@@ -17,7 +17,6 @@ public class Mummy extends Monster {
         this.isDead = false;
 
     }
-
     public Mummy (MonsterType monsterType){
         this.name = MonsterType.MUMMY.getName();
         this.attackPower = MonsterType.MUMMY.getAttackPower();
@@ -55,7 +54,11 @@ public class Mummy extends Monster {
     }
 
     @Override
-    public void obstacleAttack(Supernatural obstacle) {
+    public void monsterAttackObstacle(Supernatural obstacle) {
+
+    }
+    @Override
+    public void obstacleAttack(Supernatural monster) {
 
     }
 }

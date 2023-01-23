@@ -13,7 +13,7 @@ public abstract class Monster extends Supernatural implements Strikeable {
     public Monster() {
         super();
     }
-    public abstract void obstacleAttack (Supernatural obstacle);
+    public abstract void monsterAttackObstacle(Supernatural obstacle);
     public boolean isDead() {
         if(this.health <= 0) {
             this.isDead = true;

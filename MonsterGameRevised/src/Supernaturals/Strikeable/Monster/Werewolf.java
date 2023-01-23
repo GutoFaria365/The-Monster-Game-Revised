@@ -14,7 +14,6 @@ public class Werewolf extends Monster {
         this.isDead = false;
 
     }
-
     public Werewolf(MonsterType monsterType){
         this.name = MonsterType.WEREWOLF.getName();
         this.attackPower = MonsterType.WEREWOLF.getAttackPower();
@@ -30,7 +29,12 @@ public class Werewolf extends Monster {
     }
 
     @Override
-    public void obstacleAttack(Supernatural obstacle) {
+    public void monsterAttackObstacle(Supernatural obstacle) {
+
+    }
+
+    @Override
+    public void obstacleAttack(Supernatural monster) {
 
     }
 }

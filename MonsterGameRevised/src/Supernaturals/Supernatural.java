@@ -32,4 +32,5 @@ public Supernatural (){
     public void setHealth(int health) {
         this.health = health;
     }
+    public abstract void obstacleAttack(Supernatural monster);
 }

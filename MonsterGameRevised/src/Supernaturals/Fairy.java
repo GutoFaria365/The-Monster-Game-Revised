@@ -7,5 +7,10 @@ public class Fairy extends Supernatural{
 
     }
 
+    @Override
+    public void obstacleAttack(Supernatural monster) {
+
+    }
+
 }
 

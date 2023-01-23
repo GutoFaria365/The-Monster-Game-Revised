@@ -13,7 +13,6 @@ public class Vampire extends Monster {
         this.health = 100;
         this.isDead = false;
     }
-
     public Vampire (MonsterType monsterType){
         this.name = MonsterType.VAMPIRE.getName();
         this.attackPower = MonsterType.VAMPIRE.getAttackPower();
@@ -34,9 +33,13 @@ public class Vampire extends Monster {
         }
         monster.isDead();
     }
+    @Override
+    public void monsterAttackObstacle(Supernatural obstacle) {
+
+    }
 
     @Override
-    public void obstacleAttack(Supernatural obstacle) {
+    public void obstacleAttack(Supernatural monster) {
 
     }
 }
