@@ -14,15 +14,15 @@ public abstract class Monster extends Supernatural {
         this.isDead = false;
     }
     public Monster() {
+        super();
 
     }
+
+
     public String getName() {
         return name;
     }
     public int getAttackPower() {
-        return attackPower;
-    }
-    public int getAttack() {
         return attackPower;
     }
     public int getHealth() {
