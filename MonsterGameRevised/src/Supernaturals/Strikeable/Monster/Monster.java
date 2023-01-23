@@ -1,6 +1,8 @@
 package Supernaturals.Strikeable.Monster;
 
-public abstract class Monster {
+import Supernaturals.Supernatural;
+
+public abstract class Monster extends Supernatural {
     public String name;
     public int attackPower;
     public int health;
