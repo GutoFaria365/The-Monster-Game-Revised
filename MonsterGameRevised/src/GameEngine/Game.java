@@ -1,5 +1,6 @@
 package GameEngine;
 
+import Supernaturals.Strikeable.Monster.MonsterType;
 import Supernaturals.Strikeable.Monster.Mummy;
 import Supernaturals.Strikeable.Monster.Vampire;
 import Supernaturals.Strikeable.Monster.Werewolf;
@@ -35,7 +36,7 @@ public class Game {
     public void randomMonster(Player player) {
         for (int i = 0; i < player.getNumberOfMonsters(); i++) {
             switch (Utilities.generateGuessingNumber()) {
-                case 1 -> player.monsters[i] = new Werewolf();
+                case 1 -> player.monsters[i] = new Werewolf(MonsterType.WEREWOLF);
                 case 2 -> player.monsters[i] = new Vampire();
                 case 3 -> player.monsters[i] = new Mummy();
             }
