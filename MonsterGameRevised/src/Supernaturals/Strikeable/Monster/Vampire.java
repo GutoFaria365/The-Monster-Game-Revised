@@ -1,4 +1,4 @@
-package Supernaturals;
+package Supernaturals.Strikeable.Monster;
 import GameEngine.Utilities;
 
 public class Vampire extends Monster {
@@ -7,7 +7,7 @@ public class Vampire extends Monster {
 
     }
     public Vampire () {
-        this.name = "Supernaturals.Vampire";
+        this.name = "Supernaturals.Strikeable.Monster.Vampire";
         this.attackPower = 20;
         this.health = 100;
         this.isDead = false;

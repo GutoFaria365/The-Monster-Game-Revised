@@ -1,4 +1,4 @@
-package Supernaturals;
+package Supernaturals.Strikeable.Monster;
 
 public abstract class Monster {
     public String name;

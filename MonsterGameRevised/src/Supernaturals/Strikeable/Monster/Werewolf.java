@@ -1,4 +1,4 @@
-package Supernaturals;
+package Supernaturals.Strikeable.Monster;
 
 public class Werewolf extends Monster {
     public Werewolf(String name, int attackPower, int health) {
@@ -6,7 +6,7 @@ public class Werewolf extends Monster {
         //no special
     }
     public Werewolf() {
-        this.name = "Supernaturals.Werewolf";
+        this.name = "Supernaturals.Strikeable.Monster.Werewolf";
         this.attackPower = 20;
         this.health = 120;
         this.isDead = false;

@@ -1,4 +1,4 @@
-package Supernaturals;
+package Supernaturals.Strikeable.Monster;
 import GameEngine.Game;
 public class Mummy extends Monster {
    public  int countAttacks = 0;
@@ -9,7 +9,7 @@ public class Mummy extends Monster {
 
     }
     public Mummy() {
-        this.name = "Supernaturals.Mummy";
+        this.name = "Supernaturals.Strikeable.Monster.Mummy";
         this.attackPower = 30;
         this.health = 80;
         this.isDead = false;

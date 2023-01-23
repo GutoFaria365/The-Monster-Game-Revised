@@ -1,8 +1,8 @@
 package GameEngine;
 
-import Supernaturals.Mummy;
-import Supernaturals.Vampire;
-import Supernaturals.Werewolf;
+import Supernaturals.Strikeable.Monster.Mummy;
+import Supernaturals.Strikeable.Monster.Vampire;
+import Supernaturals.Strikeable.Monster.Werewolf;
 
 public class Game {
     private Player playerOne;

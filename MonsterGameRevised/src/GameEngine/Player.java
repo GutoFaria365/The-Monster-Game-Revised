@@ -1,6 +1,6 @@
 package GameEngine;
 
-import Supernaturals.Monster;
+import Supernaturals.Strikeable.Monster.Monster;
 
 public class Player {
     private String playerName;
