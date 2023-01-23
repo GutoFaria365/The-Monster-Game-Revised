@@ -28,9 +28,5 @@ public enum MonsterType {
     public int getHealth() {
         return health;
     }
-
-    public boolean isDead() {
-        return isDead;
-    }
 }
 
