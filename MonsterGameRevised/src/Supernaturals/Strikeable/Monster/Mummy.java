@@ -1,15 +1,17 @@
 package Supernaturals.Strikeable.Monster;
+
 import GameEngine.Game;
 import Supernaturals.Supernatural;
 
 public class Mummy extends Monster {
-   public  int countAttacks = 0;
-   public  int previousRound = 0;
+    public int countAttacks = 0;
+    public int previousRound = 0;
 
     public Mummy(String name, int attackPower, int health) {
         super(name, attackPower, health);
 
     }
+
     public Mummy() {
         this.name = "Mummy";
         this.attackPower = 30;
@@ -17,19 +19,21 @@ public class Mummy extends Monster {
         this.isDead = false;
 
     }
-    public Mummy (MonsterType monsterType){
+
+    public Mummy(MonsterType monsterType) {
         this.name = MonsterType.MUMMY.getName();
         this.attackPower = MonsterType.MUMMY.getAttackPower();
         this.health = MonsterType.MUMMY.getHealth();
         this.isDead = false;
     }
+
     @Override
     public void monsterAttack(Monster monster) {
         if (this.previousRound == 0) {
             this.previousRound = Game.roundCount;
             this.countAttacks += 1;
             System.out.println(this.countAttacks + "a" + "round1a" + this.previousRound + Game.roundCount);
-        } else if (Game.roundCount - previousRound == 1) {
+        } else if (Game.roundCount - previousRound == 2) {
             this.previousRound = Game.roundCount;
             this.countAttacks += 1;
             System.out.println(this.countAttacks + "a" + "round2a" + this.previousRound + Game.roundCount);
@@ -44,8 +48,8 @@ public class Mummy extends Monster {
             monster.isDead();
         } else {
             this.health -= this.getAttackPower();
-            System.out.println(this.getName() + this.hashCode()  + " attacked itself in it's own confusion");
-            System.out.println(this.getName() + this.hashCode()  + " has " + this.health + " health remaining.");
+            System.out.println(this.getName() + this.hashCode() + " attacked itself in it's own confusion");
+            System.out.println(this.getName() + this.hashCode() + " has " + this.health + " health remaining.");
             this.health -= this.getAttackPower();
             this.countAttacks = 0;
             this.isDead();
@@ -57,6 +61,7 @@ public class Mummy extends Monster {
     public void monsterAttackObstacle(Supernatural obstacle) {
 
     }
+
     @Override
     public void obstacleAttack(Supernatural monster) {
 

@@ -70,9 +70,8 @@ public class Game {
             if (generateObstacle() == true) {
 
             } else {
-                System.out.println("-------------------ROUND " + this.roundCount + "-----------------");
-
-
+                Player tempAttacker;
+                System.out.println("-------------------TURN " + this.roundCount + "-----------------");
                 System.out.println(attacker.getPlayerName() + "'s turn!");
                 int attackingMonster1 = MonsterSelector(attacker);
                 int defendingMonster1 = MonsterSelector(defender);
@@ -81,19 +80,9 @@ public class Game {
                     defender.setMonstersAlive(defender.getMonstersAlive() - 1);
                     defender.sortArray();
                 }
-
-               /*if (defender.getMonstersAlive() == 0) {
-                    break;
-                }
-
-                System.out.println(defender.getPlayerName() + "'s turn!");
-                int attackingMonster2 = MonsterSelector(defender);
-                int defendingMonster2 = MonsterSelector(attacker);
-                defender.monsters[attackingMonster2].monsterAttack(attacker.monsters[defendingMonster2]);
-                if (attacker.monsters[defendingMonster2].isDead) {
-                    attacker.setMonstersAlive(attacker.getMonstersAlive() - 1);
-                    attacker.sortArray();
-                }*/
+                tempAttacker = attacker;
+                attacker = defender;
+                defender = tempAttacker;
                 this.roundCount++;
             }
         }
