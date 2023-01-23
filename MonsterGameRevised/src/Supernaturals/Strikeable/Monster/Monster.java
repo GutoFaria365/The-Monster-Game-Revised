@@ -32,6 +32,7 @@ public abstract class Monster extends Supernatural {
         this.health = health;
     }
     public abstract void monsterAttack(Monster monster);
+    public abstract void obstacleAttack (Supernatural obstacle);
 
     public boolean isDead(){
         if(this.health <= 0) {

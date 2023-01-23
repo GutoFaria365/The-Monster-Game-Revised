@@ -1,5 +1,6 @@
 package Supernaturals.Strikeable.Monster;
 import GameEngine.Utilities;
+import Supernaturals.Supernatural;
 
 public class Vampire extends Monster {
     public Vampire(String name, int attackPower, int health) {
@@ -25,5 +26,10 @@ public class Vampire extends Monster {
             this.health+= 20;
         }
         monster.isDead();
+    }
+
+    @Override
+    public void obstacleAttack(Supernatural obstacle) {
+
     }
 }

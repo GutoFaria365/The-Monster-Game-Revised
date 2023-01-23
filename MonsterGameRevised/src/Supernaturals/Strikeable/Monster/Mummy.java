@@ -1,5 +1,7 @@
 package Supernaturals.Strikeable.Monster;
 import GameEngine.Game;
+import Supernaturals.Supernatural;
+
 public class Mummy extends Monster {
    public  int countAttacks = 0;
    public  int consecutiveAttack = 0;
@@ -43,5 +45,10 @@ public class Mummy extends Monster {
             this.isDead();
             //if it attacks a third time in a row it will lose some health
         }
+    }
+
+    @Override
+    public void obstacleAttack(Supernatural obstacle) {
+
     }
 }

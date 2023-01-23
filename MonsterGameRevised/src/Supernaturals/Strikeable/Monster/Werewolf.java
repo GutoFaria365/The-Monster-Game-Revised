@@ -1,5 +1,7 @@
 package Supernaturals.Strikeable.Monster;
 
+import Supernaturals.Supernatural;
+
 public class Werewolf extends Monster {
     public Werewolf(String name, int attackPower, int health) {
         super(name, attackPower, health);
@@ -17,5 +19,10 @@ public class Werewolf extends Monster {
         monster.health -= this.getAttackPower();
         System.out.println(this.getName() + this.hashCode() + " is attacking " + monster.getName() + monster.hashCode() +" for " + this.getAttackPower() + "  points of damage!");
         monster.isDead();
+    }
+
+    @Override
+    public void obstacleAttack(Supernatural obstacle) {
+
     }
 }
