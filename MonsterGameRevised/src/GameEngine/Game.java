@@ -1,9 +1,11 @@
 package GameEngine;
 
+import Supernaturals.Fairy;
 import Supernaturals.Strikeable.Monster.MonsterType;
 import Supernaturals.Strikeable.Monster.Mummy;
 import Supernaturals.Strikeable.Monster.Vampire;
 import Supernaturals.Strikeable.Monster.Werewolf;
+import Supernaturals.Strikeable.Witch;
 
 public class Game {
     public static int roundCount;
@@ -68,7 +70,14 @@ public class Game {
         while (attacker.getMonstersAlive() != 0 && defender.getMonstersAlive() != 0) {
             //chance to generate obstacle
             if (generateObstacle() == true) {
+                System.out.println("TIME FOR THE BOSS BATTLE");
 
+                switch (Utilities.generateGuessingNumber(1, 2)) {
+                    case 1 -> new Witch();
+                    case 2 -> new Fairy();
+                }
+
+                this.roundCount++;
             } else {
                 Player tempAttacker;
                 System.out.println("-------------------TURN " + this.roundCount + "-----------------");
@@ -100,8 +109,6 @@ public class Game {
     public boolean generateObstacle() {
         int obstacleChance = Utilities.generateGuessingNumber(1, 10);
         if (obstacleChance == 10) {
-            System.out.println("TIME FOR THE BOSS BATTLE");
-            this.roundCount++;
             return true;
         }
         return false;
