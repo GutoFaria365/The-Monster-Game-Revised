@@ -6,18 +6,20 @@ import Supernaturals.Strikeable.Monster.Vampire;
 import Supernaturals.Strikeable.Monster.Werewolf;
 
 public class Game {
+    public static int roundCount;
+    public Player attacker;
+    public Player defender;
     private Player playerOne;
     private Player playerTwo;
-    public static int roundCount;
-
-    public int getRoundCount() {
-        return roundCount;
-    }
 
     public Game() {
         this.playerOne = new Player("Tiago", 5);
         this.playerTwo = new Player("Beatriz", 5);
         this.roundCount = 1;
+    }
+
+    public int getRoundCount() {
+        return roundCount;
     }
 
     public void gameStart() {
@@ -43,18 +45,15 @@ public class Game {
         }
     }
 
-    public Player firstPlayer;
-    public Player secondPlayer;
-
     public void whoGoesFirst(Player p1, Player p2) {
         switch (Utilities.generateGuessingNumber(1, 2)) {
             case 1 -> {
-                firstPlayer = p1;
-                secondPlayer = p2;
+                attacker = p1;
+                defender = p2;
             }
             case 2 -> {
-                firstPlayer = p2;
-                secondPlayer = p1;
+                attacker = p2;
+                defender = p1;
             }
         }
     }
@@ -64,42 +63,59 @@ public class Game {
     }
 
     public void actualGame() {
-        while (firstPlayer.getMonstersAlive() != 0 && secondPlayer.getMonstersAlive() != 0) {
+
+
+        while (attacker.getMonstersAlive() != 0 && defender.getMonstersAlive() != 0) {
             //chance to generate obstacle
+            if (generateObstacle() == true) {
 
-            System.out.println("-------------------ROUND " + this.roundCount + "-----------------");
+            } else {
+                System.out.println("-------------------ROUND " + this.roundCount + "-----------------");
 
-            System.out.println(firstPlayer.getPlayerName() + "'s turn!");
-            int attackingMonster1 = MonsterSelector(firstPlayer);
-            int defendingMonster1 = MonsterSelector(secondPlayer);
-            firstPlayer.monsters[attackingMonster1].monsterAttack(secondPlayer.monsters[defendingMonster1]);
-            if (secondPlayer.monsters[defendingMonster1].isDead) {
-                secondPlayer.setMonstersAlive(secondPlayer.getMonstersAlive() - 1);
-                secondPlayer.sortArray();
+
+                System.out.println(attacker.getPlayerName() + "'s turn!");
+                int attackingMonster1 = MonsterSelector(attacker);
+                int defendingMonster1 = MonsterSelector(defender);
+                attacker.monsters[attackingMonster1].monsterAttack(defender.monsters[defendingMonster1]);
+                if (defender.monsters[defendingMonster1].isDead) {
+                    defender.setMonstersAlive(defender.getMonstersAlive() - 1);
+                    defender.sortArray();
+                }
+
+               /*if (defender.getMonstersAlive() == 0) {
+                    break;
+                }
+
+                System.out.println(defender.getPlayerName() + "'s turn!");
+                int attackingMonster2 = MonsterSelector(defender);
+                int defendingMonster2 = MonsterSelector(attacker);
+                defender.monsters[attackingMonster2].monsterAttack(attacker.monsters[defendingMonster2]);
+                if (attacker.monsters[defendingMonster2].isDead) {
+                    attacker.setMonstersAlive(attacker.getMonstersAlive() - 1);
+                    attacker.sortArray();
+                }*/
+                this.roundCount++;
             }
-
-            if(secondPlayer.getMonstersAlive() == 0){
-                break;
-            }
-
-            System.out.println(secondPlayer.getPlayerName() + "'s turn!");
-            int attackingMonster2 = MonsterSelector(secondPlayer);
-            int defendingMonster2 = MonsterSelector(firstPlayer);
-            secondPlayer.monsters[attackingMonster2].monsterAttack(firstPlayer.monsters[defendingMonster2]);
-            if (firstPlayer.monsters[defendingMonster2].isDead) {
-                firstPlayer.setMonstersAlive(firstPlayer.getMonstersAlive() - 1);
-                firstPlayer.sortArray();
-            }
-            this.roundCount++;
         }
         printWinner();
     }
+
     public void printWinner() {
-        if (firstPlayer.getMonstersAlive() == 0) {
-            System.out.println(secondPlayer.getPlayerName() + " WINS!!!!!!!!!!!!");
+        if (attacker.getMonstersAlive() == 0) {
+            System.out.println(defender.getPlayerName() + " WINS!!!!!!!!!!!!");
         } else {
-            System.out.println(firstPlayer.getPlayerName() + " WINS!!!!!!!!!!!!");
+            System.out.println(attacker.getPlayerName() + " WINS!!!!!!!!!!!!");
         }
+    }
+
+    public boolean generateObstacle() {
+        int obstacleChance = Utilities.generateGuessingNumber(1, 10);
+        if (obstacleChance == 10) {
+            System.out.println("TIME FOR THE BOSS BATTLE");
+            this.roundCount++;
+            return true;
+        }
+        return false;
     }
 }
 

@@ -18,7 +18,7 @@ public class Werewolf extends Monster {
         this.name = MonsterType.WEREWOLF.getName();
         this.attackPower = MonsterType.WEREWOLF.getAttackPower();
         this.health = MonsterType.WEREWOLF.getHealth();
-        this.isDead = true;
+        this.isDead = false;
     }
 
     @Override

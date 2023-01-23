@@ -21,7 +21,7 @@ public class Mummy extends Monster {
         this.name = MonsterType.MUMMY.getName();
         this.attackPower = MonsterType.MUMMY.getAttackPower();
         this.health = MonsterType.MUMMY.getHealth();
-        this.isDead = true;
+        this.isDead = false;
     }
     @Override
     public void monsterAttack(Monster monster) {

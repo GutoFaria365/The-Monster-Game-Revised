@@ -1,9 +1,16 @@
 package Supernaturals.Strikeable;
 import Supernaturals.Strikeable.Monster.Monster;
+import Supernaturals.Strikeable.Monster.MonsterType;
 import Supernaturals.Supernatural;
 
 public class Witch extends Supernatural implements Strikeable {
 
+    public Witch() {
+        this.name = "Witch";
+        this.attackPower = 30;
+        this.health = 150;
+        this.isDead = false;
+    }
     @Override
     public void monsterAttack(Monster monster) {
 
