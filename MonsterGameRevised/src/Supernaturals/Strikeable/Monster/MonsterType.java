@@ -16,4 +16,21 @@ public enum MonsterType {
         this.health = health;
         this.isDead = isDead;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAttackPower() {
+        return attackPower;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
 }
+
