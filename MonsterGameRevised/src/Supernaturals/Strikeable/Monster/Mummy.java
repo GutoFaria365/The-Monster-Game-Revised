@@ -1,6 +1,5 @@
 package Supernaturals.Strikeable.Monster;
 
-import GameEngine.Game;
 import Supernaturals.Fairy;
 import Supernaturals.Supernatural;
 
@@ -29,34 +28,30 @@ public class Mummy extends Monster {
     }
 
     @Override
-    public void monsterAttack(Monster monster) {
-        if (this.previousRound == 0) {
-            this.previousRound = Game.roundCount;
-            this.countAttacks += 1;
-            System.out.println(this.countAttacks + "a" + "round1a" + this.previousRound + Game.roundCount);
-        } else if (Game.roundCount - previousRound == 2) {
-            this.previousRound = Game.roundCount;
-            this.countAttacks += 1;
-            System.out.println(this.countAttacks + "a" + "round2a" + this.previousRound + Game.roundCount);
+    public void monsterAttack(Monster monster, int gameRound) {
+        if (this.previousRound == 0 || gameRound - this.previousRound == 2) {
+            this.previousRound = gameRound;
+            this.countAttacks++;
+            System.out.println(this.countAttacks + "a" + "round2a" + this.previousRound + gameRound);
+            if (this.countAttacks >= 3) {
+                this.health -= this.getAttackPower();
+                System.out.println(this.getName() + this.hashCode() + " attacked itself in it's own confusion");
+                System.out.println(this.getName() + this.hashCode() + " has " + this.health + " health remaining.");
+                this.health -= this.getAttackPower();
+                this.countAttacks = 0;
+                this.isDead();
+                return;
+                //if it attacks a third time in a row it will lose some health
+            }
         } else {
-            System.out.println(this.countAttacks + "a" + "round4a" + Game.roundCount);
+            System.out.println(this.countAttacks + "a" + "round4a" + gameRound);
             this.countAttacks = 0;
             this.previousRound = 0;
         }
 
-        if (this.countAttacks < 3) {
-            monster.health -= this.getAttackPower();
-            System.out.println(this.getName() + this.hashCode() + " is attacking " + monster.getName() + monster.hashCode() + " for " + this.getAttackPower() + "  points of damage!");
-            monster.isDead();
-        } else {
-            this.health -= this.getAttackPower();
-            System.out.println(this.getName() + this.hashCode() + " attacked itself in it's own confusion");
-            System.out.println(this.getName() + this.hashCode() + " has " + this.health + " health remaining.");
-            this.health -= this.getAttackPower();
-            this.countAttacks = 0;
-            this.isDead();
-            //if it attacks a third time in a row it will lose some health
-        }
+        monster.health -= this.getAttackPower();
+        System.out.println(this.getName() + this.hashCode() + " is attacking " + monster.getName() + monster.hashCode() + " for " + this.getAttackPower() + "  points of damage!");
+        monster.isDead();
     }
 
     @Override

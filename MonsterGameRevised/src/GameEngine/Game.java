@@ -6,22 +6,26 @@ import Supernaturals.Strikeable.Witch;
 import Supernaturals.Supernatural;
 
 public class Game {
-    public static int roundCount;
     public Player attacker;
     public Player defender;
     public Supernatural[] obstacles;
+    private int roundCount;
     private Player playerOne;
     private Player playerTwo;
 
     public Game() {
         this.playerOne = new Player("Tiago", 5);
         this.playerTwo = new Player("Beatriz", 5);
-        this.roundCount = 1;
+        this.setRoundCount(1);
         this.obstacles = new Supernatural[3];
     }
 
     public int getRoundCount() {
         return roundCount;
+    }
+
+    public void setRoundCount(int roundCount) {
+        this.roundCount = roundCount;
     }
 
     public void gameStart() {
@@ -82,11 +86,15 @@ public class Game {
     }
 
     private void monsterVsMonster() {
-        System.out.println("-------------------TURN " + this.roundCount + "-----------------");
+        System.out.println("-------------------TURN " + this.getRoundCount() + "-----------------");
         System.out.println(attacker.getPlayerName() + "'s turn! " + attacker.getMonstersAlive() + " monsters remaining");
         Monster attackingMonster = MonsterSelector2(attacker);
         Monster defendingMonster = MonsterSelector2(defender);
-        attackingMonster.monsterAttack(defendingMonster);
+        if (attackingMonster instanceof Mummy) {
+            attackingMonster.monsterAttack(defendingMonster, roundCount);
+        } else {
+            attackingMonster.monsterAttack(defendingMonster);
+        }
         if (defendingMonster.isDead) {
             defender.setMonstersAlive(defender.getMonstersAlive() - 1);
             defender.sortArray();
@@ -119,7 +127,7 @@ public class Game {
         tempAttacker = attacker;
         attacker = defender;
         defender = tempAttacker;
-        this.roundCount++;
+        this.setRoundCount(this.getRoundCount() + 1);
     }
 
     public void printWinner() {
@@ -137,7 +145,5 @@ public class Game {
         }
         return false;
     }
-
-
 }
 
