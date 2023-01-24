@@ -27,8 +27,8 @@ public class Mummy extends Monster {
             this.countAttacks++;
             if (this.countAttacks >= 3) {
                 this.health -= this.getAttackPower();
-                System.out.println(this.getName() + this.hashCode() + " attacked itself in it's own confusion");
-                System.out.println(this.getName() + this.hashCode() + " has " + this.health + " health remaining.");
+                System.out.println(this.getName() + " attacked itself in it's own confusion");
+                System.out.println(this.getName() + " has " + this.health + " health remaining.");
                 this.health -= this.getAttackPower();
                 this.countAttacks = 0;
                 this.isDead();
@@ -42,7 +42,7 @@ public class Mummy extends Monster {
         }
 
         monster.health -= this.getAttackPower();
-        System.out.println(this.getName() + this.hashCode() + " is attacking " + monster.getName() + monster.hashCode() + " for " + this.getAttackPower() + "  points of damage!");
+        System.out.println(this.getName() + " is attacking " + monster.getName() + " for " + this.getAttackPower() + "  points of damage!");
         monster.isDead();
     }
 
@@ -52,7 +52,7 @@ public class Mummy extends Monster {
             System.out.println("Really? You tried attacking a fairy?? tsk tsk tsk...");
         } else {
             obstacle.health -= this.getAttackPower() / 2;
-            System.out.println(this.getName() + this.hashCode() + " is attacking " + obstacle.getName() + obstacle.hashCode() + " for " + this.getAttackPower() + "  points of damage!");
+            System.out.println(this.getName() + " is attacking " + obstacle.getName() + " for " + this.getAttackPower() + "  points of damage!");
             obstacle.isDead();
         }
     }

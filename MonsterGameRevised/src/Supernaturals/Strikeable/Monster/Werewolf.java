@@ -8,7 +8,7 @@ public class Werewolf extends Monster {
         super(name, attackPower, health);
         //no special
     }
-    
+
 
     public Werewolf(MonsterType monsterType) {
         this.name = MonsterType.WEREWOLF.getName();
@@ -20,7 +20,7 @@ public class Werewolf extends Monster {
     @Override
     public void monsterAttack(Monster monster) {
         monster.health -= this.getAttackPower();
-        System.out.println(this.getName() + this.hashCode() + " is attacking " + monster.getName() + monster.hashCode() + " for " + this.getAttackPower() + "  points of damage!");
+        System.out.println(this.getName() + " is attacking " + monster.getName() + monster.hashCode() + " for " + this.getAttackPower() + "  points of damage!");
         monster.isDead();
     }
 
@@ -30,7 +30,7 @@ public class Werewolf extends Monster {
             System.out.println("Really? You tried attacking a fairy?? tsk tsk tsk...");
         } else {
             obstacle.health -= this.getAttackPower() / 2;
-            System.out.println(this.getName() + this.hashCode() + " is attacking " + obstacle.getName() + obstacle.hashCode() + " for " + this.getAttackPower() + "  points of damage!");
+            System.out.println(this.getName() + " is attacking " + obstacle.getName() + " for " + this.getAttackPower() + "  points of damage!");
             obstacle.isDead();
         }
     }
