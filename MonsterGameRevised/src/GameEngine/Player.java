@@ -6,20 +6,22 @@ public class Player {
     private String playerName;
     private int numberOfMonsters;
     private int monstersAlive;
-    public Monster[] monsters;
-
-
+    private Monster[] monsters;
 
 
     public Player(String name, int numberOfMonsters) {
         this.playerName = name;
         this.numberOfMonsters = numberOfMonsters;
-        this.monsters = new Monster[numberOfMonsters];
+        this.setMonsters(new Monster[numberOfMonsters]);
         this.monstersAlive = numberOfMonsters;
     }
 
     public int getNumberOfMonsters() {
         return numberOfMonsters;
+    }
+
+    public void setNumberOfMonsters(int numberOfMonsters) {
+        this.numberOfMonsters = numberOfMonsters;
     }
 
     public int getMonstersAlive() {
@@ -34,37 +36,34 @@ public class Player {
         return monsters;
     }
 
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public void setNumberOfMonsters(int numberOfMonsters) {
-        this.numberOfMonsters = numberOfMonsters;
-    }
-
     public void setMonsters(Monster[] monsters) {
         this.monsters = new Monster[numberOfMonsters];
     }
 
-    public Monster[] sortArray (){
-        if (this.monsters == null){
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public Monster[] sortArray() {
+        if (this.getMonsters() == null) {
             return null;
         }
-        for (int i = 0; i < monsters.length; i++) {
-            if (monsters[i].isDead == true){
-                for (int j = i+1; j < monsters.length; j++) {
-                    if(monsters[j].isDead == false){
-                        Monster temp = monsters[j];
-                        monsters[j] = monsters[i];
-                        monsters[i] = temp;
+        for (int i = 0; i < getMonsters().length; i++) {
+            if (getMonsters()[i].isDead == true) {
+                for (int j = i + 1; j < getMonsters().length; j++) {
+                    if (getMonsters()[j].isDead == false) {
+                        Monster temp = getMonsters()[j];
+                        getMonsters()[j] = getMonsters()[i];
+                        getMonsters()[i] = temp;
                         break;
                         //names[j] = null;
-                    } else if (monsters[j].isDead == true) {
+                    } else if (getMonsters()[j].isDead == true) {
                         continue;
                     }
 
                 }
             }
-        }return monsters;
+        }
+        return getMonsters();
     }
 }

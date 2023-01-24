@@ -1,10 +1,7 @@
 package GameEngine;
 
 import Supernaturals.Fairy;
-import Supernaturals.Strikeable.Monster.MonsterType;
-import Supernaturals.Strikeable.Monster.Mummy;
-import Supernaturals.Strikeable.Monster.Vampire;
-import Supernaturals.Strikeable.Monster.Werewolf;
+import Supernaturals.Strikeable.Monster.*;
 import Supernaturals.Strikeable.Witch;
 import Supernaturals.Supernatural;
 
@@ -43,9 +40,9 @@ public class Game {
     public void randomMonster(Player player) {
         for (int i = 0; i < player.getNumberOfMonsters(); i++) {
             switch (Utilities.generateGuessingNumber()) {
-                case 1 -> player.monsters[i] = new Werewolf(MonsterType.WEREWOLF);
-                case 2 -> player.monsters[i] = new Vampire(MonsterType.VAMPIRE);
-                case 3 -> player.monsters[i] = new Mummy(MonsterType.MUMMY);
+                case 1 -> player.getMonsters()[i] = new Werewolf(MonsterType.WEREWOLF);
+                case 2 -> player.getMonsters()[i] = new Vampire(MonsterType.VAMPIRE);
+                case 3 -> player.getMonsters()[i] = new Mummy(MonsterType.MUMMY);
             }
         }
     }
@@ -67,6 +64,11 @@ public class Game {
         return Utilities.generateGuessingNumber(0, player.getMonstersAlive() - 1);
     }
 
+    public Monster MonsterSelector2(Player player) {
+        int index = Utilities.generateGuessingNumber(0, player.getMonstersAlive() - 1);
+        return player.getMonsters()[index];
+    }
+
     public void actualGame() {
         while (attacker.getMonstersAlive() != 0 && defender.getMonstersAlive() != 0) {
             //chance to generate obstacle
@@ -82,10 +84,10 @@ public class Game {
     private void monsterVsMonster() {
         System.out.println("-------------------TURN " + this.roundCount + "-----------------");
         System.out.println(attacker.getPlayerName() + "'s turn! " + attacker.getMonstersAlive() + " monsters remaining");
-        int attackingMonster = MonsterSelector(attacker);
-        int defendingMonster = MonsterSelector(defender);
-        attacker.monsters[attackingMonster].monsterAttack(defender.monsters[defendingMonster]);
-        if (defender.monsters[defendingMonster].isDead) {
+        Monster attackingMonster = MonsterSelector2(attacker);
+        Monster defendingMonster = MonsterSelector2(defender);
+        attackingMonster.monsterAttack(defendingMonster);
+        if (defendingMonster.isDead) {
             defender.setMonstersAlive(defender.getMonstersAlive() - 1);
             defender.sortArray();
         }
@@ -93,8 +95,8 @@ public class Game {
     }
 
     private void obstacleFight() {
-        int defendingMonsterFromObs = MonsterSelector(attacker);
-        int attackingMonsterAgainstObs = MonsterSelector(attacker);
+        Monster defendingMonsterFromObs = MonsterSelector2(attacker);
+        Monster attackingMonsterAgainstObs = MonsterSelector2(attacker);
 
         System.out.println("TIME FOR THE BOSS BATTLE");
         switch (Utilities.generateGuessingNumber(1, 2)) {
@@ -102,12 +104,12 @@ public class Game {
             case 2 -> obstacles[0] = new Fairy();
         }
         while (!obstacles[0].isDead && attacker.getMonstersAlive() != 0 && defender.getMonstersAlive() != 0) {
-            obstacles[0].obstacleAttack(attacker.monsters[defendingMonsterFromObs]);
-            if (attacker.monsters[defendingMonsterFromObs].isDead) {
+            obstacles[0].obstacleAttack(defendingMonsterFromObs);
+            if (defendingMonsterFromObs.isDead) {
                 attacker.setMonstersAlive(attacker.getMonstersAlive() - 1);
                 attacker.sortArray();
             }
-            attacker.monsters[attackingMonsterAgainstObs].monsterAttackObstacle(obstacles[0]);
+            attackingMonsterAgainstObs.monsterAttackObstacle(obstacles[0]);
             attackerSwitch();
         }
     }
