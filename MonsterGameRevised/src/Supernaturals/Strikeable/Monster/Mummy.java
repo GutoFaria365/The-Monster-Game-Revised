@@ -25,7 +25,6 @@ public class Mummy extends Monster {
         if (this.previousRound == 0 || gameRound - this.previousRound == 2) {
             this.previousRound = gameRound;
             this.countAttacks++;
-            System.out.println(this.countAttacks + "a" + "round2a" + this.previousRound + gameRound);
             if (this.countAttacks >= 3) {
                 this.health -= this.getAttackPower();
                 System.out.println(this.getName() + this.hashCode() + " attacked itself in it's own confusion");
