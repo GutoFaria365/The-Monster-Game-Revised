@@ -35,6 +35,8 @@ public abstract class Supernatural {
             this.isDead = true;
             System.out.println(this.getName() + this.hashCode() + " has been slain!!!");
             return true;
+        } else if (this instanceof Fairy) {
+            this.isDead = true;
         } else {
             System.out.println(this.getName() + this.hashCode() + " has " + this.health + " health remaining.");
         }
