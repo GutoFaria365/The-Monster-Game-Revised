@@ -41,6 +41,7 @@ public class Mummy extends Monster {
         } else {
             System.out.println(this.countAttacks + "a" + "round4a" + Game.roundCount);
             this.countAttacks = 0;
+            this.previousRound = 0;
         }
 
         if (this.countAttacks < 3) {
