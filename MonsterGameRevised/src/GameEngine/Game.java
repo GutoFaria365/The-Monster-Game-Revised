@@ -20,6 +20,7 @@ public class Game {
         this.playerOne = new Player("Tiago", 5);
         this.playerTwo = new Player("Beatriz", 5);
         this.roundCount = 1;
+        this.obstacles = new Supernatural[3];
     }
 
     public int getRoundCount() {
