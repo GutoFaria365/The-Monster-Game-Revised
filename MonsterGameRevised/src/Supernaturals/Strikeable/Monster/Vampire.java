@@ -1,6 +1,7 @@
 package Supernaturals.Strikeable.Monster;
 
 import GameEngine.Utilities;
+import Supernaturals.Fairy;
 import Supernaturals.Supernatural;
 
 public class Vampire extends Monster {
@@ -39,9 +40,13 @@ public class Vampire extends Monster {
 
     @Override
     public void monsterAttackObstacle(Supernatural obstacle) {
-        obstacle.health -= this.getAttackPower();
-        System.out.println(this.getName() + this.hashCode() + " is attacking " + obstacle.getName() + obstacle.hashCode() + " for " + this.getAttackPower() + "  points of damage!");
-        obstacle.isDead();
+        if (obstacle instanceof Fairy) {
+            System.out.println("Really? You tried attacking a fairy?? tsk tsk tsk...");
+        } else {
+            obstacle.health -= this.getAttackPower();
+            System.out.println(this.getName() + this.hashCode() + " is attacking " + obstacle.getName() + obstacle.hashCode() + " for " + this.getAttackPower() + "  points of damage!");
+            obstacle.isDead();
+        }
     }
 
     @Override
