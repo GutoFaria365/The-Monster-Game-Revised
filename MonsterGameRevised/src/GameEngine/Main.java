@@ -5,6 +5,5 @@ public class Main {
         System.out.println("-----MONSTER MASH-----");
         Game game1 = new Game();
         game1.gameStart();
-        System.out.println("teste");
     }
 }

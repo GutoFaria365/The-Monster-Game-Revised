@@ -6,11 +6,13 @@ import Supernaturals.Strikeable.Monster.Mummy;
 import Supernaturals.Strikeable.Monster.Vampire;
 import Supernaturals.Strikeable.Monster.Werewolf;
 import Supernaturals.Strikeable.Witch;
+import Supernaturals.Supernatural;
 
 public class Game {
     public static int roundCount;
     public Player attacker;
     public Player defender;
+    public Supernatural[] obstacles;
     private Player playerOne;
     private Player playerTwo;
 
@@ -68,21 +70,36 @@ public class Game {
         while (attacker.getMonstersAlive() != 0 && defender.getMonstersAlive() != 0) {
             //chance to generate obstacle
             if (generateObstacle() == true) {
+                Player tempAttacker;
+                int defendingMonsterFromObs = MonsterSelector(attacker);
+                int attackingMonsterAgainstObs = MonsterSelector(attacker);
+
                 System.out.println("TIME FOR THE BOSS BATTLE");
                 switch (Utilities.generateGuessingNumber(1, 2)) {
-                    case 1 -> new Witch();
-                    case 2 -> new Fairy();
+                    case 1 -> obstacles[0] = new Witch();
+                    case 2 -> obstacles[0] = new Fairy();
+                }
+                while (!obstacles[0].isDead) {
+                    obstacles[0].obstacleAttack(attacker.monsters[defendingMonsterFromObs]);
+                    if (attacker.monsters[defendingMonsterFromObs].isDead) {
+                        attacker.setMonstersAlive(attacker.getMonstersAlive() - 1);
+                        attacker.sortArray();
+                    }
+                    attacker.monsters[attackingMonsterAgainstObs].monsterAttackObstacle(obstacles[0]);
+                    tempAttacker = attacker;
+                    attacker = defender;
+                    defender = tempAttacker;
+                    this.roundCount++;
                 }
 
-                this.roundCount++;
             } else {
                 Player tempAttacker;
                 System.out.println("-------------------TURN " + this.roundCount + "-----------------");
                 System.out.println(attacker.getPlayerName() + "'s turn!");
-                int attackingMonster1 = MonsterSelector(attacker);
-                int defendingMonster1 = MonsterSelector(defender);
-                attacker.monsters[attackingMonster1].monsterAttack(defender.monsters[defendingMonster1]);
-                if (defender.monsters[defendingMonster1].isDead) {
+                int attackingMonster = MonsterSelector(attacker);
+                int defendingMonster = MonsterSelector(defender);
+                attacker.monsters[attackingMonster].monsterAttack(defender.monsters[defendingMonster]);
+                if (defender.monsters[defendingMonster].isDead) {
                     defender.setMonstersAlive(defender.getMonstersAlive() - 1);
                     defender.sortArray();
                 }

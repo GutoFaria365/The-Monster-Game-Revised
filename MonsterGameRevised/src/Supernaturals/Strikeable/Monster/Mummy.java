@@ -59,7 +59,9 @@ public class Mummy extends Monster {
 
     @Override
     public void monsterAttackObstacle(Supernatural obstacle) {
-
+        obstacle.health -= this.getAttackPower();
+        System.out.println(this.getName() + this.hashCode() + " is attacking " + obstacle.getName() + obstacle.hashCode() + " for " + this.getAttackPower() + "  points of damage!");
+        obstacle.isDead();
     }
 
     @Override
