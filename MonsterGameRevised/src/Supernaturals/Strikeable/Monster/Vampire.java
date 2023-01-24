@@ -9,14 +9,7 @@ public class Vampire extends Monster {
         super(name, attackPower, health);
 
     }
-
-    public Vampire() {
-        this.name = "Vampire";
-        this.attackPower = 20;
-        this.health = 100;
-        this.isDead = false;
-    }
-
+    
     public Vampire(MonsterType monsterType) {
         this.name = MonsterType.VAMPIRE.getName();
         this.attackPower = MonsterType.VAMPIRE.getAttackPower();

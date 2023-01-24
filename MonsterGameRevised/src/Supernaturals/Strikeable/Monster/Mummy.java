@@ -12,14 +12,6 @@ public class Mummy extends Monster {
 
     }
 
-    public Mummy() {
-        this.name = "Mummy";
-        this.attackPower = 30;
-        this.health = 80;
-        this.isDead = false;
-
-    }
-
     public Mummy(MonsterType monsterType) {
         this.name = MonsterType.MUMMY.getName();
         this.attackPower = MonsterType.MUMMY.getAttackPower();

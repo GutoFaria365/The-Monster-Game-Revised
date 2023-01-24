@@ -1,9 +1,9 @@
 package Supernaturals.Strikeable.Monster;
 
 public enum MonsterType {
-    MUMMY ("Mummy", 30, 80, false),
-    VAMPIRE ("Vampire", 20, 100, false),
-    WEREWOLF ("Werewolf", 20, 120, false);
+    MUMMY("Mummy", 30, 80, false),
+    VAMPIRE("Vampire", 20, 100, false),
+    WEREWOLF("Werewolf", 20, 120, false);
 
     private String name;
     private int attackPower;
@@ -28,11 +28,5 @@ public enum MonsterType {
     public int getHealth() {
         return health;
     }
-
-    public boolean isDead() {
-        return isDead;
-    }
-
-
 }
 
