@@ -8,13 +8,7 @@ public class Werewolf extends Monster {
         super(name, attackPower, health);
         //no special
     }
-
-    public Werewolf() {
-        this.name = "Werewolf";
-        this.attackPower = 20;
-        this.health = 120;
-        this.isDead = false;
-    }
+    
 
     public Werewolf(MonsterType monsterType) {
         this.name = MonsterType.WEREWOLF.getName();
