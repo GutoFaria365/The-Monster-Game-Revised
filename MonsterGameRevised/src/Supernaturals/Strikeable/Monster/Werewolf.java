@@ -14,7 +14,6 @@ public class Werewolf extends Monster {
         this.attackPower = 20;
         this.health = 120;
         this.isDead = false;
-
     }
 
     public Werewolf(MonsterType monsterType) {
