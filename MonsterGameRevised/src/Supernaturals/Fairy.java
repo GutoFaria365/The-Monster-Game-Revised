@@ -3,19 +3,18 @@ package Supernaturals;
 public class Fairy extends Supernatural {
     public Fairy() {
         super();
-        this.name = "Fairy";
-        this.attackPower = 10;
-        this.health = 1000;
-        this.isDead = false;
-        this.untouchable = true;
+        this.setName("Fairy");
+        this.setAttackPower(10);
+        this.setHealth(1000);
+        this.setDead(false);
     }
 
     @Override
     public void obstacleAttack(Supernatural monster) {
-        monster.health -= this.getAttackPower();
+        monster.setHealth(monster.getHealth() - this.getAttackPower());
         System.out.println(this.getName() + " is attacking " + monster.getName() + " for " + this.getAttackPower() + "  points of damage!");
-        monster.isDead();
-        this.isDead();
+        monster.checkIfDead();
+        this.checkIfDead();
     }
 
 }

@@ -6,10 +6,10 @@ import Supernaturals.Supernatural;
 public class Witch extends Supernatural implements Strikeable {
 
     public Witch() {
-        this.name = "Witch";
-        this.attackPower = 30;
-        this.health = 150;
-        this.isDead = false;
+        this.setName("Witch");
+        this.setAttackPower(30);
+        this.setHealth(150);
+        this.setDead(false);
     }
 
     @Override
@@ -19,9 +19,9 @@ public class Witch extends Supernatural implements Strikeable {
 
     @Override
     public void obstacleAttack(Supernatural monster) {
-        monster.health -= this.getAttackPower();
+        monster.setHealth(monster.getHealth() - this.getAttackPower());
         System.out.println(this.getName() + " is attacking " + monster.getName() + " for " + this.getAttackPower() + "  points of damage!");
-        monster.isDead();
+        monster.checkIfDead();
     }
 }
 

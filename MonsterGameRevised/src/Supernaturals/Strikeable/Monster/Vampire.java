@@ -11,24 +11,24 @@ public class Vampire extends Monster {
     }
 
     public Vampire(MonsterType monsterType) {
-        this.name = MonsterType.VAMPIRE.getName();
-        this.attackPower = MonsterType.VAMPIRE.getAttackPower();
-        this.health = MonsterType.VAMPIRE.getHealth();
-        this.isDead = false;
+        this.setName(MonsterType.VAMPIRE.getName());
+        this.setAttackPower(MonsterType.VAMPIRE.getAttackPower());
+        this.setHealth(MonsterType.VAMPIRE.getHealth());
+        this.setDead(false);
     }
 
     @Override
     public void monsterAttack(Monster monster) {
-        monster.health -= this.getAttackPower();
+        monster.setHealth(monster.getHealth() - this.getAttackPower());
         System.out.println(this.getName() + " is attacking " + monster.getName() + " for " + this.getAttackPower() + "  points of damage!");
 
         //small chance of recovering health
         int healthBoost = Utilities.generateGuessingNumber(1, 10);
         if (healthBoost == 10) {
             System.out.println("Health Boost!!!");
-            this.health += 20;
+            this.setHealth(this.getHealth() + 20);
         }
-        monster.isDead();
+        monster.checkIfDead();
     }
 
     @Override
@@ -36,9 +36,9 @@ public class Vampire extends Monster {
         if (obstacle instanceof Fairy) {
             System.out.println("Really? You tried attacking a fairy?? tsk tsk tsk...");
         } else {
-            obstacle.health -= this.getAttackPower() / 2;
+            obstacle.setHealth(obstacle.getHealth() - this.getAttackPower() / 2);
             System.out.println(this.getName() + " is attacking " + obstacle.getName() + " for " + this.getAttackPower() + "  points of damage!");
-            obstacle.isDead();
+            obstacle.checkIfDead();
         }
     }
 

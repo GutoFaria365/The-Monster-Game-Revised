@@ -91,7 +91,7 @@ public class Game {
         } else {
             attackingMonster.monsterAttack(defendingMonster);
         }
-        if (defendingMonster.isDead) {
+        if (defendingMonster.isDead()) {
             defender.setMonstersAlive(defender.getMonstersAlive() - 1);
             defender.sortArray();
         }
@@ -107,9 +107,9 @@ public class Game {
             case 1 -> obstacles[0] = new Witch();
             case 2 -> obstacles[0] = new Fairy();
         }
-        while (!obstacles[0].isDead && attacker.getMonstersAlive() != 0 && defender.getMonstersAlive() != 0) {
+        while (!obstacles[0].isDead() && attacker.getMonstersAlive() != 0 && defender.getMonstersAlive() != 0) {
             obstacles[0].obstacleAttack(defendingMonsterFromObs);
-            if (defendingMonsterFromObs.isDead) {
+            if (defendingMonsterFromObs.isDead()) {
                 attacker.setMonstersAlive(attacker.getMonstersAlive() - 1);
                 attacker.sortArray();
             }

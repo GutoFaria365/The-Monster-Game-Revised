@@ -49,15 +49,15 @@ public class Player {
             return null;
         }
         for (int i = 0; i < getMonsters().length; i++) {
-            if (getMonsters()[i].isDead == true) {
+            if (getMonsters()[i].isDead() == true) {
                 for (int j = i + 1; j < getMonsters().length; j++) {
-                    if (getMonsters()[j].isDead == false) {
+                    if (getMonsters()[j].isDead() == false) {
                         Monster temp = getMonsters()[j];
                         getMonsters()[j] = getMonsters()[i];
                         getMonsters()[i] = temp;
                         break;
                         //names[j] = null;
-                    } else if (getMonsters()[j].isDead == true) {
+                    } else if (getMonsters()[j].isDead() == true) {
                         continue;
                     }
 

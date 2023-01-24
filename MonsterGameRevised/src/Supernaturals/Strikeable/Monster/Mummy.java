@@ -13,10 +13,10 @@ public class Mummy extends Monster {
     }
 
     public Mummy(MonsterType monsterType) {
-        this.name = MonsterType.MUMMY.getName();
-        this.attackPower = MonsterType.MUMMY.getAttackPower();
-        this.health = MonsterType.MUMMY.getHealth();
-        this.isDead = false;
+        this.setName(MonsterType.MUMMY.getName());
+        this.setAttackPower(MonsterType.MUMMY.getAttackPower());
+        this.setHealth(MonsterType.MUMMY.getHealth());
+        this.setDead(false);
     }
 
     @Override
@@ -25,12 +25,12 @@ public class Mummy extends Monster {
             this.previousRound = gameRound;
             this.countAttacks++;
             if (this.countAttacks >= 3) {
-                this.health -= this.getAttackPower();
+                this.setHealth(this.getHealth() - this.getAttackPower());
                 System.out.println(this.getName() + " attacked itself in it's own confusion");
-                System.out.println(this.getName() + " has " + this.health + " health remaining.");
-                this.health -= this.getAttackPower();
+                System.out.println(this.getName() + " has " + this.getHealth() + " health remaining.");
+                this.setHealth(this.getHealth() - this.getAttackPower());
                 this.countAttacks = 0;
-                this.isDead();
+                this.checkIfDead();
                 return;
                 //if it attacks a third time in a row it will lose some health
             }
@@ -40,9 +40,9 @@ public class Mummy extends Monster {
             this.previousRound = 0;
         }
 
-        monster.health -= this.getAttackPower();
+        monster.setHealth(monster.getHealth() - this.getAttackPower());
         System.out.println(this.getName() + " is attacking " + monster.getName() + " for " + this.getAttackPower() + "  points of damage!");
-        monster.isDead();
+        monster.checkIfDead();
     }
 
     @Override
@@ -50,9 +50,9 @@ public class Mummy extends Monster {
         if (obstacle instanceof Fairy) {
             System.out.println("Really? You tried attacking a fairy?? tsk tsk tsk...");
         } else {
-            obstacle.health -= this.getAttackPower() / 2;
+            obstacle.setHealth(obstacle.getHealth() - this.getAttackPower() / 2);
             System.out.println(this.getName() + " is attacking " + obstacle.getName() + " for " + this.getAttackPower() + "  points of damage!");
-            obstacle.isDead();
+            obstacle.checkIfDead();
         }
     }
 

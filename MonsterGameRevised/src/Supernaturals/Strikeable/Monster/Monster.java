@@ -5,10 +5,10 @@ import Supernaturals.Supernatural;
 
 public abstract class Monster extends Supernatural implements Strikeable {
     public Monster(String name, int attackPower, int health) {
-        this.name = name;
-        this.attackPower = attackPower;
-        this.health = health;
-        this.isDead = false;
+        this.setName(name);
+        this.setAttackPower(attackPower);
+        this.setHealth(health);
+        this.setDead(false);
     }
 
     public Monster() {
@@ -17,13 +17,13 @@ public abstract class Monster extends Supernatural implements Strikeable {
 
     public abstract void monsterAttackObstacle(Supernatural obstacle);
 
-    public boolean isDead() {
-        if (this.health <= 0) {
-            this.isDead = true;
+    public boolean checkIfDead() {
+        if (this.getHealth() <= 0) {
+            this.setDead(true);
             System.out.println(this.getName() + " has been slain!!!");
             return true;
         } else {
-            System.out.println(this.getName() + " has " + this.health + " health remaining.");
+            System.out.println(this.getName() + " has " + this.getHealth() + " health remaining.");
         }
         return false;
     }

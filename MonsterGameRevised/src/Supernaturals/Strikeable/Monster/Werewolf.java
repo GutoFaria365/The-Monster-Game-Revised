@@ -11,17 +11,17 @@ public class Werewolf extends Monster {
 
 
     public Werewolf(MonsterType monsterType) {
-        this.name = MonsterType.WEREWOLF.getName();
-        this.attackPower = MonsterType.WEREWOLF.getAttackPower();
-        this.health = MonsterType.WEREWOLF.getHealth();
-        this.isDead = false;
+        this.setName(MonsterType.WEREWOLF.getName());
+        this.setAttackPower(MonsterType.WEREWOLF.getAttackPower());
+        this.setHealth(MonsterType.WEREWOLF.getHealth());
+        this.setDead(false);
     }
 
     @Override
     public void monsterAttack(Monster monster) {
-        monster.health -= this.getAttackPower();
-        System.out.println(this.getName() + " is attacking " + monster.getName() + monster.hashCode() + " for " + this.getAttackPower() + "  points of damage!");
-        monster.isDead();
+        monster.setHealth(monster.getHealth() - this.getAttackPower());
+        System.out.println(this.getName() + " is attacking " + monster.getName() + " for " + this.getAttackPower() + "  points of damage!");
+        monster.checkIfDead();
     }
 
     @Override
@@ -29,9 +29,9 @@ public class Werewolf extends Monster {
         if (obstacle instanceof Fairy) {
             System.out.println("Really? You tried attacking a fairy?? tsk tsk tsk...");
         } else {
-            obstacle.health -= this.getAttackPower() / 2;
+            obstacle.setHealth(obstacle.getHealth() - this.getAttackPower() / 2);
             System.out.println(this.getName() + " is attacking " + obstacle.getName() + " for " + this.getAttackPower() + "  points of damage!");
-            obstacle.isDead();
+            obstacle.checkIfDead();
         }
     }
 
