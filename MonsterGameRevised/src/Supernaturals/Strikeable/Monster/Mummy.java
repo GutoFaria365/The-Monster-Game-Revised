@@ -19,7 +19,6 @@ public class Mummy extends Monster {
         this.isDead = false;
     }
 
-
     @Override
     public void monsterAttack(Monster monster, int gameRound) {
         if (this.previousRound == 0 || gameRound - this.previousRound == 2) {
