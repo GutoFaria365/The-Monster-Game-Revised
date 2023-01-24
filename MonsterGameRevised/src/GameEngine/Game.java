@@ -71,46 +71,54 @@ public class Game {
         while (attacker.getMonstersAlive() != 0 && defender.getMonstersAlive() != 0) {
             //chance to generate obstacle
             if (generateObstacle() == true) {
-                Player tempAttacker;
-                int defendingMonsterFromObs = MonsterSelector(attacker);
-                int attackingMonsterAgainstObs = MonsterSelector(attacker);
-
-                System.out.println("TIME FOR THE BOSS BATTLE");
-                switch (Utilities.generateGuessingNumber(1, 2)) {
-                    case 1 -> obstacles[0] = new Witch();
-                    case 2 -> obstacles[0] = new Fairy();
-                }
-                while (!obstacles[0].isDead) {
-                    obstacles[0].obstacleAttack(attacker.monsters[defendingMonsterFromObs]);
-                    if (attacker.monsters[defendingMonsterFromObs].isDead) {
-                        attacker.setMonstersAlive(attacker.getMonstersAlive() - 1);
-                        attacker.sortArray();
-                    }
-                    attacker.monsters[attackingMonsterAgainstObs].monsterAttackObstacle(obstacles[0]);
-                    tempAttacker = attacker;
-                    attacker = defender;
-                    defender = tempAttacker;
-                    this.roundCount++;
-                }
+                obstacleFight();
 
             } else {
-                Player tempAttacker;
-                System.out.println("-------------------TURN " + this.roundCount + "-----------------");
-                System.out.println(attacker.getPlayerName() + "'s turn!");
-                int attackingMonster = MonsterSelector(attacker);
-                int defendingMonster = MonsterSelector(defender);
-                attacker.monsters[attackingMonster].monsterAttack(defender.monsters[defendingMonster]);
-                if (defender.monsters[defendingMonster].isDead) {
-                    defender.setMonstersAlive(defender.getMonstersAlive() - 1);
-                    defender.sortArray();
-                }
-                tempAttacker = attacker;
-                attacker = defender;
-                defender = tempAttacker;
-                this.roundCount++;
+                monsterVsMonster();
             }
         }
         printWinner();
+    }
+
+    private void monsterVsMonster() {
+        System.out.println("-------------------TURN " + this.roundCount + "-----------------");
+        System.out.println(attacker.getPlayerName() + "'s turn! " + attacker.getMonstersAlive() + " monsters remaining");
+        int attackingMonster = MonsterSelector(attacker);
+        int defendingMonster = MonsterSelector(defender);
+        attacker.monsters[attackingMonster].monsterAttack(defender.monsters[defendingMonster]);
+        if (defender.monsters[defendingMonster].isDead) {
+            defender.setMonstersAlive(defender.getMonstersAlive() - 1);
+            defender.sortArray();
+        }
+        attackerSwitch();
+    }
+
+    private void obstacleFight() {
+        int defendingMonsterFromObs = MonsterSelector(attacker);
+        int attackingMonsterAgainstObs = MonsterSelector(attacker);
+
+        System.out.println("TIME FOR THE BOSS BATTLE");
+        switch (Utilities.generateGuessingNumber(1, 2)) {
+            case 1 -> obstacles[0] = new Witch();
+            case 2 -> obstacles[0] = new Fairy();
+        }
+        while (!obstacles[0].isDead && attacker.getMonstersAlive() != 0 && defender.getMonstersAlive() != 0) {
+            obstacles[0].obstacleAttack(attacker.monsters[defendingMonsterFromObs]);
+            if (attacker.monsters[defendingMonsterFromObs].isDead) {
+                attacker.setMonstersAlive(attacker.getMonstersAlive() - 1);
+                attacker.sortArray();
+            }
+            attacker.monsters[attackingMonsterAgainstObs].monsterAttackObstacle(obstacles[0]);
+            attackerSwitch();
+        }
+    }
+
+    private void attackerSwitch() {
+        Player tempAttacker;
+        tempAttacker = attacker;
+        attacker = defender;
+        defender = tempAttacker;
+        this.roundCount++;
     }
 
     public void printWinner() {
@@ -128,5 +136,7 @@ public class Game {
         }
         return false;
     }
+
+
 }
 

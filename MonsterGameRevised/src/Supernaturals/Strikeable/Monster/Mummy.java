@@ -63,7 +63,7 @@ public class Mummy extends Monster {
         if (obstacle instanceof Fairy) {
             System.out.println("Really? You tried attacking a fairy?? tsk tsk tsk...");
         } else {
-            obstacle.health -= this.getAttackPower();
+            obstacle.health -= this.getAttackPower() / 2;
             System.out.println(this.getName() + this.hashCode() + " is attacking " + obstacle.getName() + obstacle.hashCode() + " for " + this.getAttackPower() + "  points of damage!");
             obstacle.isDead();
         }
