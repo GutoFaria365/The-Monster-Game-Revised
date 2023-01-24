@@ -64,11 +64,7 @@ public class Game {
         }
     }
 
-    public int MonsterSelector(Player player) {
-        return Utilities.generateGuessingNumber(0, player.getMonstersAlive() - 1);
-    }
-
-    public Monster MonsterSelector2(Player player) {
+    public Monster MonsterSelector(Player player) {
         int index = Utilities.generateGuessingNumber(0, player.getMonstersAlive() - 1);
         return player.getMonsters()[index];
     }
@@ -88,8 +84,8 @@ public class Game {
     private void monsterVsMonster() {
         System.out.println("-------------------TURN " + this.getRoundCount() + "-----------------");
         System.out.println(attacker.getPlayerName() + "'s turn! " + attacker.getMonstersAlive() + " monsters remaining");
-        Monster attackingMonster = MonsterSelector2(attacker);
-        Monster defendingMonster = MonsterSelector2(defender);
+        Monster attackingMonster = MonsterSelector(attacker);
+        Monster defendingMonster = MonsterSelector(defender);
         if (attackingMonster instanceof Mummy) {
             attackingMonster.monsterAttack(defendingMonster, roundCount);
         } else {
@@ -103,8 +99,8 @@ public class Game {
     }
 
     private void obstacleFight() {
-        Monster defendingMonsterFromObs = MonsterSelector2(attacker);
-        Monster attackingMonsterAgainstObs = MonsterSelector2(attacker);
+        Monster defendingMonsterFromObs = MonsterSelector(attacker);
+        Monster attackingMonsterAgainstObs = MonsterSelector(attacker);
 
         System.out.println("TIME FOR THE BOSS BATTLE");
         switch (Utilities.generateGuessingNumber(1, 2)) {
