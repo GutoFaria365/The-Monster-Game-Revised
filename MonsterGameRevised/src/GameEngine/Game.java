@@ -70,9 +70,8 @@ public class Game {
     public void actualGame() {
         while (attacker.getMonstersAlive() != 0 && defender.getMonstersAlive() != 0) {
             //chance to generate obstacle
-            if (generateObstacle() == true) {
+            if (generateObstacle()) {
                 obstacleFight();
-
             } else {
                 monsterVsMonster();
             }
