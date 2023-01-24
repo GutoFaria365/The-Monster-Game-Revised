@@ -31,8 +31,16 @@ public abstract class Supernatural {
     }
 
     public boolean isDead() {
-        return isDead;
+        if (this.health <= 0) {
+            this.isDead = true;
+            System.out.println(this.getName() + this.hashCode() + " has been slain!!!");
+            return true;
+        } else {
+            System.out.println(this.getName() + this.hashCode() + " has " + this.health + " health remaining.");
+        }
+        return false;
     }
 
     public abstract void obstacleAttack(Supernatural monster);
 }
+
