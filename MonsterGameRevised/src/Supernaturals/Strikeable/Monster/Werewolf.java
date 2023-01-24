@@ -34,6 +34,7 @@ public class Werewolf extends Monster {
     public void monsterAttackObstacle(Supernatural obstacle) {
         if (obstacle instanceof Fairy) {
             System.out.println("Really? You tried attacking a fairy?? tsk tsk tsk...");
+            System.out.println("kek");
         } else {
             obstacle.health -= this.getAttackPower();
             System.out.println(this.getName() + this.hashCode() + " is attacking " + obstacle.getName() + obstacle.hashCode() + " for " + this.getAttackPower() + "  points of damage!");
